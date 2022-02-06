@@ -1,0 +1,174 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.background{
+  min-height: calc(100vh - 13px);
+  background-image: url('./images/bg-desktop-light.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fafafa;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+/* To do container */
+
+.todo_container{
+  padding-top: max(10vh, 100px);
+  min-height: 90vh;
+  width: min(90%, 500px);
+  margin: 0 auto;
+}
+
+.todo_heading{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo_sun{
+  display: none;
+}
+
+.todo_form{
+  background-color: white;
+  border-radius: 10px;
+  margin-block: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+input[type=text]{
+  border: none;
+  width: 90%;
+  display: inline;
+}
+
+.todo_body{
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.todo_list > .todo_item + .todo_item, .todo_buttons{
+  border-top: 1px solid rgb(209, 206, 206);
+}
+
+.todo_list > *, .todo_buttons{
+  padding: 0.5rem;
+}
+
+.todo_buttons{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clear{
+  display: none;
+}
+
+.todo_item{
+  position: relative;
+}
+
+button{
+  cursor: pointer;
+}
+
+.close{
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.todo_item:hover .close{
+  visibility: visible;
+}
+
+.close::before{
+  content: '';
+  width: 20px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #746f6f;
+  transform: rotate(45deg);
+}
+
+.close::after{
+  content: '';
+  width: 20px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #746f6f;
+  transform: rotate(-45deg);
+}
