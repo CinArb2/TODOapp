@@ -42,10 +42,12 @@ iconTheme.addEventListener('click', e => {
     document.body.dataset.theme = "dark";
     document.querySelector('.todo_form').dataset.theme = "dark";
     document.querySelector('.todo_body').dataset.theme = "dark";
+    document.querySelector('.todo_buttons_mobile').dataset.theme = "dark";
   } else {
     document.body.dataset.theme = "";
     document.querySelector('.todo_form').dataset.theme = "";
     document.querySelector('.todo_body').dataset.theme = "";
+    document.querySelector('.todo_buttons_mobile').dataset.theme = "";
   }
 })
 
@@ -71,6 +73,8 @@ textoTodo.addEventListener('keyup', e => {
 todoList.addEventListener('click', (e) => {
   if (e.target.matches('.close')) {
     e.target.parentElement.remove()
+    let todoItems = document.querySelectorAll('.todo_item');
+    numberCounter.textContent = todoItems.length;
   }
 })
 

@@ -122,6 +122,10 @@ body {
   letter-spacing: 10px;
 }
 
+.todo_icon{
+  cursor: pointer;
+}
+
 .todo_sun{
   display: none;
 }
@@ -148,6 +152,8 @@ input[type = text]{
   display: inline;
   background-color: transparent;
 }
+
+
 
 .todo_body,
 .todo_buttons_mobile{
@@ -248,6 +254,11 @@ input:checked + label{
   }
 }
 
+.todo_buttons .button:hover{
+  color: var(--Bright-Blue);
+}
+
+
 /* themes */
 
 body[data-theme="dark"]{
@@ -264,5 +275,10 @@ body[data-theme="dark"]{
 
 [data-theme="dark"] .todo_buttons > *{
   color: hsl(234, 39%, 85%);;
+}
+
+[data-theme="dark"] .todo_list > .todo_item + .todo_item,
+[data-theme="dark"] .todo_list + .todo_buttons{
+  border-top: 1px solid var(--Dark-Grayish-Blue);
 }
 
