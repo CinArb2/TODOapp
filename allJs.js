@@ -1,7 +1,11 @@
 let textoTodo = document.querySelector('#text');
 let checkboxItem = document.querySelector('#check_item');
-let todoList = document.querySelector('.todo_list')
-let numberCounter = document.querySelector('.number_counter')
+let todoList = document.querySelector('.todo_list');
+let numberCounter = document.querySelector('.number_counter');
+let todoButtons = document.querySelector('.todo_buttons');
+let iconTheme = document.querySelector('.todo_icon')
+
+
 
 
 const createNode = (textValue, contador) => {
@@ -29,6 +33,22 @@ const clearForm = () => {
 }
 
 
+iconTheme.addEventListener('click', e => {
+  Array.from(e.currentTarget.children).forEach(el => {
+    el.classList.toggle('visible')
+    
+  });
+  if (document.body.dataset.theme === "") {
+    document.body.dataset.theme = "dark";
+    document.querySelector('.todo_form').dataset.theme = "dark";
+    document.querySelector('.todo_body').dataset.theme = "dark";
+  } else {
+    document.body.dataset.theme = "";
+    document.querySelector('.todo_form').dataset.theme = "";
+    document.querySelector('.todo_body').dataset.theme = "";
+  }
+})
+
 checkboxItem.addEventListener('click', () => {
   if (textoTodo.value !== "") {
     let numeroItems = document.querySelectorAll('.todo_item').length + 1;
@@ -36,7 +56,6 @@ checkboxItem.addEventListener('click', () => {
     numberCounter.textContent = numeroItems;
     clearForm();
   }
-
 })
 
 textoTodo.addEventListener('keyup', e => {
@@ -49,3 +68,40 @@ textoTodo.addEventListener('keyup', e => {
   }
 })
 
+todoList.addEventListener('click', (e) => {
+  if (e.target.matches('.close')) {
+    e.target.parentElement.remove()
+  }
+})
+
+todoButtons.addEventListener('click', (e) => {
+
+  let todoItems = document.querySelectorAll('.todo_item');
+  
+  todoItems.forEach(item => {
+
+    item.classList.remove('visible')
+
+    if (e.target.matches('.button-active')) {
+      if (item.firstElementChild.checked === true) {
+        item.classList.add('visible')
+      }
+    }
+    if (e.target.matches('.button-completed')) {
+      if (item.firstElementChild.checked !== true) {
+        item.classList.add('visible')
+      }
+    }
+    if (e.target.matches('.button-all')) {
+      item.classList.remove('visible')
+    }
+    if (e.target.matches('.button-clear')) {
+      if (item.firstElementChild.checked === true) {
+        item.remove()
+        let todoItems = document.querySelectorAll('.todo_item');
+        numberCounter.textContent = todoItems.length;
+      }
+    }
+  })
+  
+})

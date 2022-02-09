@@ -88,6 +88,14 @@ select {
   display: none;
 }
 
+.todo_sun.visible{
+  display: block;
+}
+
+.visible{
+  display: none;
+}
+
 .todo_form{
   background-color: white;
   border-radius: 10px;
@@ -96,10 +104,11 @@ select {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-input[type=text]{
+input[type = text]{
   border: none;
   width: 90%;
   display: inline;
+  background-color: transparent;
 }
 
 .todo_body{
@@ -133,18 +142,20 @@ input[type=text]{
 
 button{
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 .close{
+  height: 30px;
+  aspect-ratio: 1;
   margin: 0;
   padding: 0;
-  border: none;
-  background-color: transparent;
   position: absolute;
   right: 10px;
   top: 50%;
   visibility: hidden;
-  cursor: pointer;
+  transform: translateY(-50%);
 }
 
 .todo_item:hover .close{
@@ -156,8 +167,8 @@ button{
   width: 20px;
   height: 1px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  right: 5px;
   background-color: #746f6f;
   transform: rotate(45deg);
 }
@@ -167,8 +178,30 @@ button{
   width: 20px;
   height: 1px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  right: 5px;
   background-color: #746f6f;
   transform: rotate(-45deg);
 }
+
+input:checked + label{
+  color: gray;
+  text-decoration:line-through;
+}
+
+body[data-theme="dark"]{
+  background-color: hsl(235, 21%, 11%);
+}
+
+[data-theme="dark"] {
+  background-color: hsl(235, 24%, 19%);
+}
+
+[data-theme="dark"] > *{
+  color: hsl(234, 39%, 85%);
+}
+
+[data-theme="dark"] .todo_buttons > *{
+  color: hsl(234, 39%, 85%);;
+}
+
