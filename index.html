@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <title>Frontend Mentor | Todo app</title>
+  <link rel="icon" href="https://img.icons8.com/color/48/000000/checked--v4.png">
+  <title>To Do App</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/46bf840cdc.js" crossorigin="anonymous"></script>
 </head>
 <body class="background" data-theme>
-  
   <div class="todo_container" >
     <div class="todo_heading">
-      <h1 class="todo_title">TODO</h1>
+      <h1 class="todo_title">TO DO</h1>
       <div class="todo_icon">
         <img class="todo_moon" src="./images/icon-moon.svg" alt="">
         <img class="todo_sun" src="./images/icon-sun.svg" alt="">
@@ -30,20 +28,37 @@
           <label for="task_default">Task 1</label>
           <button class="close"></button>
         </div>
+        <div class="todo_item">
+          <input type="checkbox" id="task_default">
+          <label for="task_default">Task 2</label>
+          <button class="close"></button>
+        </div>
+        <div class="todo_item">
+          <input type="checkbox" id="task_default">
+          <label for="task_default">Task 3</label>
+          <button class="close"></button>
+        </div>
+        <div class="todo_item">
+          <input type="checkbox" id="task_default">
+          <label for="task_default">Task 4</label>
+          <button class="close"></button>
+        </div>
       </div>
       <div class="todo_buttons">
         <div class="todo_items-counter"><span class="number_counter">1</span> items left</div>
+        <div class="todo_buttons_desktop">
         <button class="button button-all">All</button>
         <button class="button button-active">Active</button>
         <button class="button button-completed">Completed</button>
+        </div>
         <button class="button button-clear">Clear completed</button>
       </div>
     </div>
-  </div>
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <div class="todo_buttons todo_buttons_mobile">
+      <button class="button button-all">All</button>
+      <button class="button button-active">Active</button>
+      <button class="button button-completed">Completed</button>
+    </div>
   </div>
   <script src="./allJs.js"></script>
 </body>

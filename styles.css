@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+/* font-family: 'Josefin Sans', sans-serif; */
+
 /* Box sizing rules */
 *,
 *::before,
@@ -19,34 +22,9 @@ dd {
   margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -57,31 +35,91 @@ select {
   font: inherit;
 }
 
-.background{
-  min-height: calc(100vh - 13px);
-  background-image: url('./images/bg-desktop-light.jpg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: #fafafa;
+button{
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
-.attribution { font-size: 11px; text-align: center; }
-.attribution a { color: hsl(228, 45%, 44%); }
 
+:root{
+  --main-font: 'Josefin Sans', sans-serif;
+  --Bright-Blue: hsl(220, 98%, 61%);
+  --Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+  
+  /* ### Light Theme */
+
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+  --Light-Grayish-Blue: hsl(233, 11%, 84%);
+  --Dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+
+  /* ### Dark Theme */
+
+  --Very-Dark-Blue: hsl(235, 21%, 11%);
+  --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --Light-Grayish-Blue: hsl(234, 39%, 85%);
+  --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+  --Dark-Grayish-Blue: hsl(234, 11%, 52%);
+  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+  --Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+
+  --color-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: var(--main-font);
+  font-size: 16px;
+  color: var(--Dark-Grayish-Blue)
+}
+
+.background{
+  min-height: calc(100vh - 13px);
+  background-image: url('./images/bg-mobile-light.jpg');
+  background-repeat: no-repeat;
+  background-size: 500px 220px;
+  background-color: var(--Very-Light-Gray);
+}
+
+@media screen and (min-width: 500px){
+  .background{
+    background-image: url('./images/bg-desktop-light.jpg');
+    background-size: auto 220px;
+  }
+}
+
+@media screen and (min-width: 1050px){
+  .background{
+    background-image: url('./images/bg-desktop-light.jpg');
+    background-size: contain;
+  }
+}
 /* To do container */
 
 .todo_container{
-  padding-top: max(10vh, 100px);
+  padding-top: max(10vh, 110px);
   min-height: 90vh;
-  width: min(90%, 500px);
+  width: min(80%, 600px);
   margin: 0 auto;
 }
 
 .todo_heading{
-  color: white;
+  color: var(--Very-Light-Gray);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-block: 1rem;
+}
+
+.todo_title{
+  letter-spacing: 10px;
 }
 
 .todo_sun{
@@ -99,10 +137,10 @@ select {
 .todo_form{
   background-color: white;
   border-radius: 10px;
-  margin-block: 0.5rem;
-  padding: 0.5rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1rem;
+  box-shadow: var(--color-shadow);
 }
+
 
 input[type = text]{
   border: none;
@@ -111,25 +149,33 @@ input[type = text]{
   background-color: transparent;
 }
 
-.todo_body{
+.todo_body,
+.todo_buttons_mobile{
   margin-top: 1rem;
   background-color: white;
   border-radius: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--color-shadow);
 }
 
-.todo_list > .todo_item + .todo_item, .todo_buttons{
-  border-top: 1px solid rgb(209, 206, 206);
+.todo_list > *, .todo_buttons,
+.todo_buttons_mobile{
+  padding: 1rem;
 }
 
-.todo_list > *, .todo_buttons{
-  padding: 0.5rem;
+.todo_list > .todo_item + .todo_item,
+.todo_list + .todo_buttons{
+  border-top: 1px solid var(--Very-Light-Grayish-Blue);
+}
+
+label{
+  padding-left: 0.7rem;
 }
 
 .todo_buttons{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 0.9rem;
 }
 
 .clear{
@@ -140,11 +186,6 @@ input[type = text]{
   position: relative;
 }
 
-button{
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-}
 
 .close{
   height: 30px;
@@ -185,9 +226,29 @@ button{
 }
 
 input:checked + label{
-  color: gray;
+  color: var(--Very-Light-Grayish-Blue);
   text-decoration:line-through;
 }
+
+.todo_buttons_desktop{
+  display: none;
+}
+
+.todo_buttons_mobile{
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 630px){
+  .todo_buttons_desktop{
+  display: block;
+  }
+  .todo_buttons_mobile{
+    display: none;
+  }
+}
+
+/* themes */
 
 body[data-theme="dark"]{
   background-color: hsl(235, 21%, 11%);

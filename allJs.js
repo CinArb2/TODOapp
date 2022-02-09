@@ -2,7 +2,7 @@ let textoTodo = document.querySelector('#text');
 let checkboxItem = document.querySelector('#check_item');
 let todoList = document.querySelector('.todo_list');
 let numberCounter = document.querySelector('.number_counter');
-let todoButtons = document.querySelector('.todo_buttons');
+let todoButtons = document.querySelectorAll('.todo_buttons');
 let iconTheme = document.querySelector('.todo_icon')
 
 
@@ -74,34 +74,38 @@ todoList.addEventListener('click', (e) => {
   }
 })
 
-todoButtons.addEventListener('click', (e) => {
-
-  let todoItems = document.querySelectorAll('.todo_item');
+todoButtons.forEach(btn => {
   
-  todoItems.forEach(item => {
+  btn.addEventListener('click', (e) => {
 
-    item.classList.remove('visible')
+    let todoItems = document.querySelectorAll('.todo_item');
+  
+    todoItems.forEach(item => {
 
-    if (e.target.matches('.button-active')) {
-      if (item.firstElementChild.checked === true) {
-        item.classList.add('visible')
-      }
-    }
-    if (e.target.matches('.button-completed')) {
-      if (item.firstElementChild.checked !== true) {
-        item.classList.add('visible')
-      }
-    }
-    if (e.target.matches('.button-all')) {
       item.classList.remove('visible')
-    }
-    if (e.target.matches('.button-clear')) {
-      if (item.firstElementChild.checked === true) {
-        item.remove()
-        let todoItems = document.querySelectorAll('.todo_item');
-        numberCounter.textContent = todoItems.length;
+
+      if (e.target.matches('.button-active')) {
+        if (item.firstElementChild.checked === true) {
+          item.classList.add('visible')
+        }
       }
-    }
+      if (e.target.matches('.button-completed')) {
+        if (item.firstElementChild.checked !== true) {
+          item.classList.add('visible')
+        }
+      }
+      if (e.target.matches('.button-all')) {
+        item.classList.remove('visible')
+      }
+      if (e.target.matches('.button-clear')) {
+        if (item.firstElementChild.checked === true) {
+          item.remove()
+          let todoItems = document.querySelectorAll('.todo_item');
+          numberCounter.textContent = todoItems.length;
+        }
+      }
+    })
   })
-  
 })
+
+  
