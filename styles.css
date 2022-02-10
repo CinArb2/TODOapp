@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
-/* font-family: 'Josefin Sans', sans-serif; */
 
 /* Box sizing rules */
 *,
@@ -46,27 +45,14 @@ button{
 :root{
   --main-font: 'Josefin Sans', sans-serif;
   --Bright-Blue: hsl(220, 98%, 61%);
-  --Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
-  
-  /* ### Light Theme */
-
   --Very-Light-Gray: hsl(0, 0%, 98%);
   --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
-  --Light-Grayish-Blue: hsl(233, 11%, 84%);
-  --Dark-Grayish-Blue: hsl(236, 9%, 61%);
-  --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
-
-  /* ### Dark Theme */
-
   --Very-Dark-Blue: hsl(235, 21%, 11%);
   --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
-  --Light-Grayish-Blue: hsl(234, 39%, 85%);
   --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
   --Dark-Grayish-Blue: hsl(234, 11%, 52%);
-  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
-  --Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
-
   --color-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --Check-Background: linear-gradient( hsl(192, 100%, 67%), hsl(280, 87%, 65%)) ;
 }
 
 
@@ -110,16 +96,13 @@ body {
   margin: 0 auto;
 }
 
+/* To do Heading - title and theme */
 .todo_heading{
   color: var(--Very-Light-Gray);
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-block: 1rem;
-}
-
-.todo_title{
-  letter-spacing: 10px;
 }
 
 .todo_icon{
@@ -138,13 +121,17 @@ body {
   display: none;
 }
 
+/* To do form */
+
+
 .todo_form{
   background-color: white;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: var(--color-shadow);
+  display: flex;
+  gap: 10px;
 }
-
 
 input[type = text]{
   border: none;
@@ -153,7 +140,42 @@ input[type = text]{
   background-color: transparent;
 }
 
+.todo_form .circle:hover {
+  background: center url(./images/icon-check.svg) no-repeat, linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
 
+/* To do Body */
+label{
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+
+label [type="checkbox"]{
+  visibility: hidden;
+  position: absolute;
+  left: 30px;
+}
+
+.circle{
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border: 1px solid var(--Light-Grayish-Blue-hover);
+  border-radius: 50%;
+}
+
+
+
+input[type = 'checkbox']:checked ~ .circle{
+  background: center url(./images/icon-check.svg) no-repeat, linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+input[type = 'checkbox']:checked ~ span{
+  color: var(--Very-Light-Grayish-Blue);
+  text-decoration:line-through;
+}
 
 .todo_body,
 .todo_buttons_mobile{
@@ -173,9 +195,6 @@ input[type = text]{
   border-top: 1px solid var(--Very-Light-Grayish-Blue);
 }
 
-label{
-  padding-left: 0.7rem;
-}
 
 .todo_buttons{
   display: flex;
@@ -231,10 +250,7 @@ label{
   transform: rotate(-45deg);
 }
 
-input:checked + label{
-  color: var(--Very-Light-Grayish-Blue);
-  text-decoration:line-through;
-}
+
 
 .todo_buttons_desktop{
   display: none;
@@ -243,6 +259,10 @@ input:checked + label{
 .todo_buttons_mobile{
   display: flex;
   justify-content: space-around;
+}
+
+.todo_buttons .button:hover{
+  color: var(--Bright-Blue);
 }
 
 @media screen and (min-width: 630px){
@@ -254,12 +274,8 @@ input:checked + label{
   }
 }
 
-.todo_buttons .button:hover{
-  color: var(--Bright-Blue);
-}
 
-
-/* themes */
+/* theme dark */
 
 body[data-theme="dark"]{
   background-color: hsl(235, 21%, 11%);

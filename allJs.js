@@ -4,77 +4,61 @@ let todoList = document.querySelector('.todo_list');
 let numberCounter = document.querySelector('.number_counter');
 let todoButtons = document.querySelectorAll('.todo_buttons');
 let iconTheme = document.querySelector('.todo_icon')
+let themeSet = document.querySelectorAll('[data-theme]')
 
+// Fuctions
 
+const updateCounter = () =>  document.querySelectorAll('.todo_item').length;
 
-
-const createNode = (textValue, contador) => {
+const createNode = (textValue) => {
   const nuevoTodo = document.createElement('div');
-  const nuevoinput = document.createElement('input');
-  const nuevolabel = document.createElement('label');
-  const nuevoBoton = document.createElement('button');
-
+  nuevoTodo.innerHTML = `<label>
+            <input type="checkbox">
+            <span class="circle"></span>
+            <span>${textValue}</span>
+          </label>
+          <button class="close"></button>`
   nuevoTodo.classList.add('todo_item')
-  nuevoBoton.classList.add('close')
-  nuevoinput.setAttribute("type", "checkbox")
-  
-  nuevoinput.setAttribute("id", `task${contador}`)
-  nuevolabel.setAttribute("for", `task${contador}`)
-  nuevoTodo.appendChild(nuevoinput)
-  nuevoTodo.appendChild(nuevolabel)
-  nuevoTodo.appendChild(nuevoBoton)
   todoList.appendChild(nuevoTodo)
-  nuevolabel.textContent = textValue;
 }
 
-const clearForm = () => {
-  checkboxItem.checked = false;
-  textoTodo.value = "";
-}
-
+// Event listeners
 
 iconTheme.addEventListener('click', e => {
-  Array.from(e.currentTarget.children).forEach(el => {
-    el.classList.toggle('visible')
-    
-  });
+  Array.from(e.currentTarget.children).forEach(el => el.classList.toggle('visible'));
+
   if (document.body.dataset.theme === "") {
-    document.body.dataset.theme = "dark";
-    document.querySelector('.todo_form').dataset.theme = "dark";
-    document.querySelector('.todo_body').dataset.theme = "dark";
-    document.querySelector('.todo_buttons_mobile').dataset.theme = "dark";
+    themeSet.forEach(theme => {
+      theme.setAttribute("data-theme", "dark")
+    })
   } else {
-    document.body.dataset.theme = "";
-    document.querySelector('.todo_form').dataset.theme = "";
-    document.querySelector('.todo_body').dataset.theme = "";
-    document.querySelector('.todo_buttons_mobile').dataset.theme = "";
+    themeSet.forEach(theme => {
+      theme.setAttribute("data-theme", "")
+    })
   }
 })
 
 checkboxItem.addEventListener('click', () => {
+  
   if (textoTodo.value !== "") {
-    let numeroItems = document.querySelectorAll('.todo_item').length + 1;
-    createNode(textoTodo.value, numeroItems);
-    numberCounter.textContent = numeroItems;
-    clearForm();
+    createNode(textoTodo.value);
+    numberCounter.textContent = updateCounter();
+    textoTodo.value = "";;
   }
 })
 
 textoTodo.addEventListener('keyup', e => {
   if (e.code === 'Enter' && textoTodo.value !== "") {
-    let numeroItems = document.querySelectorAll('.todo_item').length + 1;
-
-    createNode(textoTodo.value, numeroItems);
-    numberCounter.textContent = numeroItems;
-    clearForm();
+    createNode(textoTodo.value);
+    numberCounter.textContent = updateCounter();
+    textoTodo.value = "";;
   }
 })
 
 todoList.addEventListener('click', (e) => {
   if (e.target.matches('.close')) {
     e.target.parentElement.remove()
-    let todoItems = document.querySelectorAll('.todo_item');
-    numberCounter.textContent = todoItems.length;
+    numberCounter.textContent = updateCounter();
   }
 })
 
@@ -82,30 +66,29 @@ todoButtons.forEach(btn => {
   
   btn.addEventListener('click', (e) => {
 
-    let todoItems = document.querySelectorAll('.todo_item');
+    let labels = document.querySelectorAll('label')
   
-    todoItems.forEach(item => {
+    labels.forEach(item => {
 
-      item.classList.remove('visible')
+       item.parentElement.classList.remove('visible')
 
       if (e.target.matches('.button-active')) {
         if (item.firstElementChild.checked === true) {
-          item.classList.add('visible')
+           item.parentElement.classList.add('visible')
         }
       }
       if (e.target.matches('.button-completed')) {
         if (item.firstElementChild.checked !== true) {
-          item.classList.add('visible')
+          item.parentElement.classList.add('visible')
         }
       }
       if (e.target.matches('.button-all')) {
-        item.classList.remove('visible')
+         item.parentElement.classList.remove('visible')
       }
       if (e.target.matches('.button-clear')) {
         if (item.firstElementChild.checked === true) {
-          item.remove()
-          let todoItems = document.querySelectorAll('.todo_item');
-          numberCounter.textContent = todoItems.length;
+           item.parentElement.remove()
+          numberCounter.textContent = updateCounter();
         }
       }
     })
