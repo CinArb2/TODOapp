@@ -1,4 +1,4 @@
-# Space tourism multi-page website
+# Todo App
 
 Front end mentor challenge where the goal was to build out a toDo app and get it looking as close to the design as possible.
 
